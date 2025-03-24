@@ -1,35 +1,22 @@
-name: Upload Large File to GitHub with LFS
+name: Save Large File to GitHub Artifacts
 
-on: [push, workflow_dispatch]
+on: [push, workflow_dispatch] # Jalan tiap push atau manual
 
 jobs:
-  upload-large-file:
+  save-large-file:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-        with:
-          lfs: true # Aktifkan LFS di dalam workflow
-
-      - name: Install Git LFS
-        run: |
-          git lfs install
-          git lfs track "*.mp4"
 
       - name: Download Large File (Contoh)
         run: |
-          wget -O big-file.mp4 https://download2262.mediafire.com/i6l2a57600lgNsbFCO8QznFMt2-Dv4BXH0cIUKfxg9W_3UDgeuhw0n3y96MMpB74wj5PoVhS1_nG4VlpMANsjUiNsyHwT_IBBb30y9wgQOW5Cq5AK4wSo-B3aoV8ML35hJwXKdawYHhtBA2PkimnBGQ3cnnO3u7m9uw91ZvGSeyHCcE/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4
+          wget -O big-file.mp4 https://download2282.mediafire.com/umr93pijnd1ge1uVq7KiII0wfuPrvX3CWmcyQR6A1jeTq4j_PH5giGMdDLcZnJjnJ_e_RSJVVElPJri0z5AzVi_-rq_Zi-fN23GSTfEKQH-pcR4Pdkii-RVLAZ9pOdnOmRJ8Uctm2Gkp7ILhJ-kLQeraR8EGzE3drj4g0ooTayo9M9A/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4
 
-      - name: Commit & Push File ke Repo
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://nouzen-storage:${GH_PAT}@github.com/nouzen-storage/anime-libs.git
-
-          git add .gitattributes
-          git add big-file.mp4
-          git commit -m "Added large file via GitHub Actions"
-          git push origin main
+      - name: Upload File to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: large-file
+          path: big-file.mp4
+          retention-days: 7 # Bisa diakses selama 7 hari
