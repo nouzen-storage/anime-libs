@@ -12,11 +12,11 @@ jobs:
 
       - name: Download Large File (Contoh)
         run: |
-          wget -O big-file.mp4 https://download2282.mediafire.com/umr93pijnd1ge1uVq7KiII0wfuPrvX3CWmcyQR6A1jeTq4j_PH5giGMdDLcZnJjnJ_e_RSJVVElPJri0z5AzVi_-rq_Zi-fN23GSTfEKQH-pcR4Pdkii-RVLAZ9pOdnOmRJ8Uctm2Gkp7ILhJ-kLQeraR8EGzE3drj4g0ooTayo9M9A/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4
+          wget -O big-file.rar https://drive.usercontent.google.com/download?id=1uPUrqrBTjte4gscZ0qFVHfDiQmwg5wxz&export=download&authuser=0&confirm=t&uuid=93d88482-4ed5-4e2b-91ad-edff5783eaab&at=AEz70l5GNd0tsc8Kfvesgy1F9Xqf%3A1742855027831
 
       - name: Upload File to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: large-file
-          path: big-file.mp4
+          path: big-file.rar
           retention-days: 7 # Bisa diakses selama 7 hari
