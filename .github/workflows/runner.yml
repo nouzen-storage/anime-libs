@@ -15,11 +15,11 @@ jobs:
       - name: Install Git LFS
         run: |
           git lfs install
-          git lfs track "*.zip"
+          git lfs track "*.mp4"
 
       - name: Download Large File (Contoh)
         run: |
-          wget -O big-file.zip https://download2262.mediafire.com/i6l2a57600lgNsbFCO8QznFMt2-Dv4BXH0cIUKfxg9W_3UDgeuhw0n3y96MMpB74wj5PoVhS1_nG4VlpMANsjUiNsyHwT_IBBb30y9wgQOW5Cq5AK4wSo-B3aoV8ML35hJwXKdawYHhtBA2PkimnBGQ3cnnO3u7m9uw91ZvGSeyHCcE/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4
+          wget -O big-file.mp4 https://download2262.mediafire.com/i6l2a57600lgNsbFCO8QznFMt2-Dv4BXH0cIUKfxg9W_3UDgeuhw0n3y96MMpB74wj5PoVhS1_nG4VlpMANsjUiNsyHwT_IBBb30y9wgQOW5Cq5AK4wSo-B3aoV8ML35hJwXKdawYHhtBA2PkimnBGQ3cnnO3u7m9uw91ZvGSeyHCcE/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4
 
       - name: Commit & Push File ke Repo
         env:
@@ -30,6 +30,6 @@ jobs:
           git remote set-url origin https://nouzen-storage:${GH_PAT}@github.com/nouzen-storage/anime-libs.git
 
           git add .gitattributes
-          git add big-file.zip
+          git add big-file.mp4
           git commit -m "Added large file via GitHub Actions"
           git push origin main
