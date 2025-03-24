@@ -6,17 +6,31 @@ on:
       - main
 
 jobs:
-  deploy-beta:
+  upload-large-file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v3
+        with:
+          lfs: true # Aktifkan LFS di dalam workflow
 
-      - name: Install Speedtest CLI
+      - name: Install Git LFS
         run: |
-          sudo apt-get update
-          sudo apt-get install -y speedtest-cli
+          git lfs install
+          git lfs track "*.mp4" # Ganti dengan ekstensi file besar yang mau di-upload
 
-      - name: Run Speedtest
-        run: speedtest-cli
+      - name: Download Large File (Contoh)
+        run: |
+          wget -O big-file.mp4 https://download2282.mediafire.com/27tx13433mkgwaNxk4Lh4xT0MCYK30ifnbVnLxS2ZE7C4pw5cnaYK-eEggoEsWcv44XJD_b8sM_KqjdYk48F-elj5rvQncYgEHEj2JWA_OdZsoqqtmiJ5AK1hJoiA0lwT4ZtrXQewFTpSO40fvM_OqGWx4PxzlTq76Hjv6E2hyHpoZs/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4 # Ganti link sesuai kebutuhan
+
+      - name: Commit & Push File ke Repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .gitattributes
+          git add big-file.mp4
+          git commit -m "Added large file via GitHub Actions"
+
+          git push origin main
