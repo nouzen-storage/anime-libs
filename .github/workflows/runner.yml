@@ -8,14 +8,14 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download Large File (Contoh)
         run: |
           wget -O big-file.mp4 https://download2282.mediafire.com/umr93pijnd1ge1uVq7KiII0wfuPrvX3CWmcyQR6A1jeTq4j_PH5giGMdDLcZnJjnJ_e_RSJVVElPJri0z5AzVi_-rq_Zi-fN23GSTfEKQH-pcR4Pdkii-RVLAZ9pOdnOmRJ8Uctm2Gkp7ILhJ-kLQeraR8EGzE3drj4g0ooTayo9M9A/cg5xu2wenneg9wr/Alqanime_MoyAdUncenFull_TanpaTimpahan_1080p.mp4
 
       - name: Upload File to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: large-file
           path: big-file.mp4
